@@ -1,6 +1,10 @@
 package seven;
 
 import java.time.LocalDate;
+import java.time.Period;
+import java.util.Objects;
+
+import eight.Gender;
 
 //Person -> human_resource.person
 public class Person {
@@ -8,6 +12,7 @@ public class Person {
 	private String name;
 	private String surname;
 	private LocalDate birthday;
+	private Gender gender;
 
 	public int getId() {
 		return id;
@@ -41,9 +46,45 @@ public class Person {
 		this.birthday = birthday;
 	}
 
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+	public int getAge() {
+		LocalDate now = LocalDate.now();
+		Period period = birthday.until(now);
+		return period.getYears();
+	}
+
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return id + ", name:" + name + " surname:" + surname;
+		return "[" + id + "]" + " " + name + " " + surname + ", birthday:" + birthday.toString() + ", spol: "
+				+ gender.toString();
+	}
+	
+	
+	// true ili false
+	//p1
+	//p2
+	//S1
+	//p1.equals(p2)
+	@Override
+	public boolean equals(Object obj) {
+		if(!(obj instanceof Person)) {
+			return false;
+		}
+		
+		Person comparedPerson = (Person) obj;
+		
+		return id == comparedPerson.getId();
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 }
