@@ -1,16 +1,13 @@
 package seven;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.ArrayList;
-import java.sql.Date;
 import java.util.List;
 
 import eight.Gender;
@@ -55,11 +52,11 @@ public class PersonDao {
 			String selectStatement = "SELECT * FROM person";
 			// RDBMS MySQL
 			ResultSet resultSet = statement.executeQuery(selectStatement);
-			while (resultSet.next()) {
+			while (resultSet.next()) { // false i pozicionirat će kursor na prvi red
 				// 1. način da dobijem podatak iz neke kolone
 				// MORAM ZNATI INDEKS
 				// 2. način MORAM ZNATI IME kolone
-				Person person = new Person(); // HASH CODE 2
+				Person person = new Person(); // 1234
 				person.setId(resultSet.getInt(1));// id 1 2
 				person.setName(resultSet.getString("name"));// name Amer Amer
 				person.setSurname(resultSet.getString("surname")); // Bogilović
@@ -70,14 +67,15 @@ public class PersonDao {
 				person.setGender(spol.equals("MALE") ? Gender.MALE: Gender.FEMALE);
 				personList.add(person);
 			}
-			Person person1 = new Person(); // HASH CODE 1
+			//new new  -> add, add, add
+			Person person1 = new Person(); // 5678
 			person1.setId(1);
 			person1.setName("Amer");
 			person1.setSurname("Bogilović");
 			person1.setBirthday(LocalDate.of(1985, 1, 1));
 			person1.setGender(Gender.MALE);
-			personList.add(person1);
-			personList.add(person1);
+			personList.add(person1);// -> 5678 .... 1234
+			personList.add(person1);// -> 5678.....
 			return personList;
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());

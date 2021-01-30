@@ -23,12 +23,4 @@ public class Executor {
 			System.out.println(p);
 		}
 	}
-	
-	static void printListWithGender(List<Person> listOfPerson, Gender spol) {
-		for(Person p: listOfPerson) {
-			if(p.getGender().equals(spol)) {
-				System.out.println(p);
-			}
-		}
-	}
 }

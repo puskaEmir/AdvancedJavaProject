@@ -4,10 +4,11 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.Objects;
 
+
 import eight.Gender;
 
 //Person -> human_resource.person
-public class Person {
+public class Person implements Comparable<Person>{
 	private int id;
 	private String name;
 	private String surname;
@@ -67,24 +68,40 @@ public class Person {
 	}
 	
 	
-	// true ili false
-	//p1
-	//p2
-	//S1
+	//HashSet
+	// p1.equals(a1)
 	//p1.equals(p2)
 	@Override
 	public boolean equals(Object obj) {
 		if(!(obj instanceof Person)) {
 			return false;
 		}
-		
 		Person comparedPerson = (Person) obj;
-		
 		return id == comparedPerson.getId();
 	}
 	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
+	}
+	/*
+	 * compareTo -> TreeSet primiti element tipa Person u sebe.
+	 * <p> 
+	 * Izbaciti duplikate
+	 * <p> 
+	 * Napraviti order ..redoslijed..
+	 * <p>
+	 * -1  .... 0  .... 1
+	 */
+	@Override
+	public int compareTo(Person o) {
+		int result = 0;
+		if(id<o.getId()) {
+			result = -1;
+		}
+		if(id>o.getId()) {
+			result = 1;
+		}
+		return result;
 	}
 }
