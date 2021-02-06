@@ -8,14 +8,15 @@ import java.util.Objects;
 import eight.Gender;
 
 //Person -> human_resource.person
-public class Person implements Comparable<Person>{
-	private int id;
+public class Person {
+	// implements Comparable<Person>
+	private Integer id;
 	private String name;
 	private String surname;
 	private LocalDate birthday;
 	private Gender gender;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -55,7 +56,7 @@ public class Person implements Comparable<Person>{
 		this.gender = gender;
 	}
 
-	public int getAge() {
+	public Integer getAge() {
 		LocalDate now = LocalDate.now();
 		Period period = birthday.until(now);
 		return period.getYears();
@@ -91,17 +92,19 @@ public class Person implements Comparable<Person>{
 	 * <p> 
 	 * Napraviti order ..redoslijed..
 	 * <p>
+	 * p1.compareTo(p2)
 	 * -1  .... 0  .... 1
 	 */
+	/*
 	@Override
 	public int compareTo(Person o) {
 		int result = 0;
-		if(id<o.getId()) {
+		if(id < o.getId()) {
 			result = -1;
 		}
-		if(id>o.getId()) {
+		if(id > o.getId()) {
 			result = 1;
 		}
 		return result;
-	}
+	}*/
 }
